@@ -1,0 +1,14 @@
+// prettier-ignore
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "target": "esnext",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "tests": ["tests/*"],
+      "@components/*": ["src/components/*"],
+    },
+  }
+}
