@@ -1,10 +1,20 @@
 import {SearchIcon, ShoppingCartIcon, User} from 'public/images/svgIcons';
 import React from 'react';
-import {StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
+import {Dimensions, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 
-const Search = () => {
+interface Props {
+  navigation: any;
+}
+
+const Search = ({navigation}: Props) => {
   return (
-    <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around'}}>
+    <View
+      style={{
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        width: Dimensions.get('window').width,
+      }}>
       <View style={styles.search}>
         <View>
           <SearchIcon width={20} height={20} />
@@ -14,7 +24,7 @@ const Search = () => {
         </View>
       </View>
       <View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
           <ShoppingCartIcon width={20} height={20} />
         </TouchableOpacity>
       </View>
@@ -32,10 +42,12 @@ const styles = StyleSheet.create({
   search: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     paddingRight: 16,
     paddingLeft: 16,
     height: 36,
     lineHeight: 36,
+    backgroundColor: '#fff',
+    width: '65%',
   },
 });

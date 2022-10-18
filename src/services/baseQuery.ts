@@ -1,13 +1,10 @@
 import {fetchBaseQuery} from '@reduxjs/toolkit/query';
-import {AsyncStorage} from 'react-native';
 
-export const getToken = async () => {
+export const getToken = () => {
   let token: string | null;
-  try {
-    token = await AsyncStorage.getItem('USER_TOKEN');
-  } catch (error) {
-    token = '';
-  }
+  token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzMmE1ZmQ4ZWEwZWM3MTE5OGM4N2FlIiwiaWF0IjoxNjY1OTgxMTI0LCJleHAiOjE2NjU5ODgzMjR9.HmFu9kOi9U7T_-NUErI0kFUv6UbA6GB5kLKOyYor32o';
+
   return token;
 };
 
@@ -16,7 +13,10 @@ export const baseQueryWithToken = fetchBaseQuery({
   prepareHeaders: headers => {
     const token = getToken();
     if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
+      headers.set(
+        'authorization',
+        `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjMzMmE1ZmQ4ZWEwZWM3MTE5OGM4N2FlIiwiaWF0IjoxNjY1OTk3MTEwLCJleHAiOjE2NjYwMDQzMTB9.uCMl9wyZpHL4v71sQ42ypFRPNqjyCKWjbyVJbS8pvuw`,
+      );
     }
     return headers;
   },

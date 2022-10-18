@@ -1,18 +1,17 @@
 import {configureStore} from '@reduxjs/toolkit';
-import chatReducer from '@src/components/abc';
-import {loginAPI} from '@src/services/login';
-
+import {productAPI} from '@src/services/products';
+import {cartAPI} from '@src/services/cart';
 export const store = configureStore({
   reducer: {
-    Chat: chatReducer,
-    [loginAPI.reducerPath]: loginAPI.reducer,
+    [productAPI.reducerPath]: productAPI.reducer,
+    [cartAPI.reducerPath]: cartAPI.reducer,
   },
 
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat([loginAPI.middleware]),
+    }).concat([productAPI.middleware, cartAPI.middleware]),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
